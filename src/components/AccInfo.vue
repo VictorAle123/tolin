@@ -123,7 +123,7 @@ export default {
        deleteUser(id)
   {
     axios.delete( 'http://127.0.0.1:8000/api/paciente/eliminar/' + id
-        ).then((response) => window.location.href='/'
+        ).then((response) => window.location.href='/pacient'
     )
  this.$swal({
   position: 'top-center',

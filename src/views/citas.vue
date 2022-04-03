@@ -7,6 +7,8 @@
       <h2 class="text-xl mb-2 font-semibold">Elegir fecha</h2>
       </center>
       <br>
+            <form @submit.prevent="update">
+
       <div class="grid lg:grid-cols-4 gap-3">
       
       <label for="start"></label>
@@ -14,19 +16,25 @@
        value="2022-04-04"
        min="2022-04-04" max="2022-12-31">
        
-<span>Seleccionar paciente: {{ selected }}</span>
+<span 
+                >Seleccionar paciente:</span>
       <select v-model="selected">
-        
+       
         
   <option disabled value="">Seleccione un elemento</option>
-  <option>A</option>
-  <option>B</option>
-  <option>C</option>
+  <option   v-for="us in Users" :key="us.id" :value="us.id"> {{ us.nombre }}</option>
+  
 </select>
 
 
-
+<button
+              type="submit"
+              class="rounded text-gray-100 px-3 py-1 bg-blue-500 hover:shadow-inner hover:bg-blue-700 transition-all duration-300"
+            >
+              Actualizar
+            </button>
     </div>
+      </form>
 </div>
     <AccInfo />
   </div>
@@ -39,14 +47,46 @@ import firebaseUser from "../store/user.js";
 import { createUser } from "../main.js";
 import AccInfo from "../components/AccInfo.vue";
 import Loading from "../components/Loading.vue";
+import axios from "axios";
+
+   
+
+
 
 export default {
+
+data(){
+    return  { 
+      Users: null,
+    
+    };
+    
+    
+  },
+  
   name: "dient",
   components: {
     Header,
     AccInfo,
     Loading,
   },
+    
+ mounted() {
+  axios.get( 'http://127.0.0.1:8000/api/paciente/traert'  
+    ).then((response) => (this.Users = response.data)
+      
+    )},
+
+   methods: {
+       update()
+  {
+    console.log();
+ 
+},
+ 
+
+  },
+    
   setup() {
     const state = reactive({
       Nombre: null,
@@ -54,7 +94,10 @@ export default {
       Telefono: null,
       Edad: null,
       isLoading: false,
+
     });
+  
+
 
     const addInfo = async () => {
       // await createUser({ ...state }, (state.isLoading = true));

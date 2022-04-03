@@ -4,7 +4,7 @@
     <!-- component -->
  
     <div class="bg-white m-10 shadow rounded-lg p-6">
-      <h2 class="text-xl mb-4 font-semibold">Update Account Infomation</h2>
+      <h2 class="text-xl mb-4 font-semibold">Actualizar informacion del paciente</h2>
       <form @submit.prevent="update">
         <div class="grid lg:grid-cols-2 gap-6">
           <div
@@ -106,7 +106,7 @@
               type="submit"
               class="rounded text-gray-100 px-3 py-1 bg-blue-500 hover:shadow-inner hover:bg-blue-700 transition-all duration-300"
             >
-              Update
+              Actualizar
             </button>
             <div v-if="isLoading" class="flex mt-1 text-center float-right">
               <Loading />
@@ -161,7 +161,7 @@ export default {
   showConfirmButton: false,
   timer: 800
 })
-  window.location.href="/"
+  window.location.href="/pacient"
 });
  
 },
